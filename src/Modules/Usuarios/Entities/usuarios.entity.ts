@@ -12,8 +12,17 @@ export class Usuarios {
     APELLIDO: Boolean;
 
     @Column()
+    CEDULA: string;
+
+    @Column()
     MATRICULA: string;
 
     @Column()
+    TIPO_PERSONA: string;
+
+    @Column()
     ID_TIPO_USUARIO: number;
+
+    @Column()
+    ESTADO: boolean;
 }
