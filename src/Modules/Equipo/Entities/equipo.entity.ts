@@ -7,13 +7,22 @@ export class Equipo {
     ID: number;
 
     @Column()
+    DESCRIPCION: string;
+
+    @Column()
+    NUMERO_SERIAL: string;
+
+    @Column()
     ID_MARCA: number;
 
     @Column()
-    NOMBRE: string;
+    ID_MODELO: number;
 
     @Column()
     ID_TIPO_EQUIPO: number;
+
+    @Column()
+    ID_TECNOLOGIA_CONEXION: number;
 
     @Column()
     ESTADO: boolean;

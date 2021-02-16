@@ -1,3 +1,6 @@
+import { RentasModule } from './Modules/Rentas/rentas.module';
+import { EmpleadosModule } from './Modules/Empleados/empleados.module';
+import { TecnologiasConexionModule } from './Modules/Tecnologias Conexion/tecnologias-conexion.module';
 import { UsuariosModule } from './Modules/Usuarios/usuarios.module';
 import { TipoUsuariosModule } from './Modules/Tipo Usuarios/tipo-usuarios.module';
 import { TipoEquipoModule } from './Modules/Tipo Equipo/tipo-equipo.module';
@@ -10,6 +13,9 @@ import { EquipoModule } from './Modules/Equipo/equipo.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
+    RentasModule,
+    EmpleadosModule,
+    TecnologiasConexionModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',

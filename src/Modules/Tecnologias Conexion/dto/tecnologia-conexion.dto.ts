@@ -1,6 +1,5 @@
-export class ModeloDto {
+export class TecnologiaConexionDto {
     ID?: number;
-    ID_MARCA: number;
     DESCRIPCION: string;
     ESTADO: boolean;
 }
