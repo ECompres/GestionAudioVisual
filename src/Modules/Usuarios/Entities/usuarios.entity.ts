@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { TipoUsuarios } from "src/Modules/Tipo Usuarios/Entities/tipo-usuarios.entity";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Usuarios {
@@ -9,16 +10,17 @@ export class Usuarios {
     NOMBRE: string;
 
     @Column()
-    APELLIDO: Boolean;
+    APELLIDO: string;
 
     @Column()
     CEDULA: string;
 
-    @Column()
+    @Column({ unique: true })
     MATRICULA: string;
 
-    @Column()
-    ID_TIPO_USUARIO: number;
+    @OneToOne(type => TipoUsuarios)
+    @JoinColumn({name:"ID_TIPO_USUARIO"})
+    ID_TIPO_USUARIO: TipoUsuarios;
 
     @Column()
     ESTADO: boolean;

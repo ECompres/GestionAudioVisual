@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Equipo } from "src/Modules/Equipo/Entities/equipo.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class TipoEquipo {
@@ -10,4 +11,7 @@ export class TipoEquipo {
 
     @Column()
     ESTADO: Boolean;
+
+    @OneToMany(type=>Equipo, equipo => equipo.ID_TIPO_EQUIPO)
+    EQUIPO: Equipo[];
 }

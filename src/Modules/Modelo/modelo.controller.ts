@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, Param, Post, Put, Res } from '@nestjs/common';
 import { model } from 'mongoose';
 import { ModeloDto } from './dto/modelo.dto';
 import { ModeloService } from './modelo.service';
@@ -8,7 +8,7 @@ export class ModeloController {
     constructor(private modeloService: ModeloService) { }
 
     @Get()
-    async obtenerModelos() {
+    async obtenerModelos() { 
         return await this.modeloService.obtenerModelos();
     }
 
@@ -28,7 +28,7 @@ export class ModeloController {
     }
 
     @Delete(':id')
-    async eliminarModelo(@Param('id') id: number){
+    async eliminarModelo(@Param('id') id: number) {
         return await this.modeloService.eliminarModelo(id);
     }
 

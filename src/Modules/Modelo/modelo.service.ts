@@ -8,10 +8,10 @@ import { Modelo } from './Entities/modelo.entity';
 export class ModeloService {
     constructor(
         @InjectRepository(Modelo)
-        private readonly modeloRepository: Repository<Modelo>
+        private modeloRepository: Repository<Modelo>
     ) { }
 
-    async obtenerModelos(): Promise<Modelo[]> {
+    async obtenerModelos(): Promise<Modelo[]>{
         return await this.modeloRepository.find();
     }
 

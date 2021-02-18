@@ -23,7 +23,7 @@ export class UsuariosController {
     }
 
     @Put(':id')
-    async actualizarUsuario(@Param('id') id: number, usuario: UsuarioDto) {
+    async actualizarUsuario(@Param('id') id: number, @Body() usuario: UsuarioDto) {
         return await this.usuarioService.actualizarUsuario(id, usuario);
     }
 

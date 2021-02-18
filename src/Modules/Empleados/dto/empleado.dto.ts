@@ -4,5 +4,5 @@ export class EmpleadoDto{
     CEDULA: string;
     TANDA: string;
     FECHA_INGRESO: Date;  
-    ESTADO: Date;
+    ESTADO: boolean;
 }

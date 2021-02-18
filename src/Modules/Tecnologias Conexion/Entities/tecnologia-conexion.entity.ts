@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Equipo } from "src/Modules/Equipo/Entities/equipo.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class TecnologiaConexion {
@@ -11,4 +12,7 @@ export class TecnologiaConexion {
 
     @Column()
     ESTADO: boolean;
+
+    @OneToMany(type=>Equipo, equipo => equipo.ID_TECNOLOGIA_CONEXION)
+    EQUIPO: Equipo[];
 }

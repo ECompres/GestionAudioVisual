@@ -26,7 +26,7 @@ export class TecnologiasConexionController {
     }
 
     @Put(':id')
-    async actualizarTecnologiaConexion(@Param('id') id: number, tecnologiaConexion: TecnologiaConexionDto) {
+    async actualizarTecnologiaConexion(@Param('id') id: number, @Body() tecnologiaConexion: TecnologiaConexionDto) {
         return await this.tecnologiasConexionService.actualizarTecnologiaConexion(id, tecnologiaConexion);
     }
 

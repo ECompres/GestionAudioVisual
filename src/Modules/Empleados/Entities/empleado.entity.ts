@@ -10,6 +10,9 @@ export class Empleado {
     NOMBRE: string;
 
     @Column()
+    APELLIDO: string;
+
+    @Column({ unique: true })
     CEDULA: string;
 
     @Column()
@@ -18,7 +21,7 @@ export class Empleado {
     @Column()
     FECHA_INGRESO: Date;
 
-    @Column()
-    ESTADO: Date;
+    @Column({type:'boolean'})
+    ESTADO: boolean;
 
 }

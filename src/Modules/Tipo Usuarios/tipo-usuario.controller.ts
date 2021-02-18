@@ -22,7 +22,7 @@ export class TipoUsuarioController {
     }
 
     @Put(':id')
-    async actualizarTipoUsuario(@Param('id') id: number, tipoUsuario: TipoUsuariosDto) {
+    async actualizarTipoUsuario(@Param('id') id: number, @Body() tipoUsuario: TipoUsuariosDto) {
         return await this.tipoUsuarioService.actualizarTipoUsuario(id, tipoUsuario);
     }
 
