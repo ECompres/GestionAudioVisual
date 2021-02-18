@@ -6,7 +6,7 @@ import { TipoUsuarioService } from './tipo-usuario.service';
 export class TipoUsuarioController {
     constructor(private tipoUsuarioService: TipoUsuarioService) { }
 
-    @Get()
+    @Get('get')
     async obtenerTipoUsuarios() {
         return await this.tipoUsuarioService.obtenerTipoUsuarios();
     }

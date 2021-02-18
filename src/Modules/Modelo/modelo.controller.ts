@@ -7,7 +7,7 @@ import { ModeloService } from './modelo.service';
 export class ModeloController {
     constructor(private modeloService: ModeloService) { }
 
-    @Get()
+    @Get('get')
     async obtenerModelos() { 
         return await this.modeloService.obtenerModelos();
     }

@@ -31,7 +31,7 @@ export class Equipo {
     @ManyToOne(type => TecnologiaConexion, tecnologiaConexion => tecnologiaConexion.ID, { eager: true })
     @JoinColumn({ name: "ID_TECNOLOGIA_CONEXION" })
     ID_TECNOLOGIA_CONEXION: TecnologiaConexion;
-
+    
     @Column()
     ESTADO: boolean;
 

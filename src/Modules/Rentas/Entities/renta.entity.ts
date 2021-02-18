@@ -1,4 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Empleado } from "src/Modules/Empleados/Entities/empleado.entity";
+import { Equipo } from "src/Modules/Equipo/Entities/equipo.entity";
+import { Usuarios } from "src/Modules/Usuarios/Entities/usuarios.entity";
+import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Renta {
@@ -9,14 +12,14 @@ export class Renta {
     @Column()
     NUMERO_PRESTAMO: number;
 
-    @Column()
-    ID_EMPLEADO: number
+    @ManyToOne(type => Empleado, empleado => empleado.ID)
+    ID_EMPLEADO: Empleado;
 
-    @Column()
-    ID_EQUIPO: number
+    @OneToOne(type => Equipo, { eager: true })
+    ID_EQUIPO: Equipo;
 
-    @Column()
-    ID_USUARIO: number
+    @ManyToOne(type => Usuarios, usuario => usuario.ID)
+    ID_USUARIO: Usuarios;
 
     @Column()
     FECHA_PRESTAMO: Date

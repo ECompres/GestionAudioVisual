@@ -7,7 +7,7 @@ export class EquipoController {
 
     constructor(private equipoService: EquipoService) { }
 
-    @Get()
+    @Get('get')
     async obtenerEquipos() {
         return await this.equipoService.obtenerEquipos();
     }

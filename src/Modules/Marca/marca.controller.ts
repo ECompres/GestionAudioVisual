@@ -7,7 +7,7 @@ export class MarcaController {
 
     constructor(private marcaService: MarcaService) { }
 
-    @Get()
+    @Get('get')
     async obtenerMarcas() {
         return await this.marcaService.obtenerMarcas();
     }

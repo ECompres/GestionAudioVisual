@@ -7,7 +7,7 @@ export class EmpleadosController {
 
     constructor(private empleadosService: EmpleadosService) { }
 
-    @Get()
+    @Get('get')
     async obtenerEmpleados() {
         return await this.empleadosService.obtenerEmpleados();
     }

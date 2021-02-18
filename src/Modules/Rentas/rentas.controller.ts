@@ -2,11 +2,11 @@ import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common'
 import { RentaDto } from './dto/renta.dto';
 import { RentasService } from './rentas.service';
 
-@Controller()
+@Controller('Rentas')
 export class RentasController { 
     constructor(private rentaService: RentasService) { }
 
-    @Get()
+    @Get('get')
     async obtenerRentas() {
         return await this.rentaService.obtenerRentas();
     }

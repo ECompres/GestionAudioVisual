@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Renta } from "src/Modules/Rentas/Entities/renta.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
 
 @Entity()
 export class Empleado {
@@ -20,6 +21,11 @@ export class Empleado {
 
     @Column()
     FECHA_INGRESO: Date;
+
+    @OneToMany(type=>Renta, renta => renta.ID_EMPLEADO,{
+        eager:true
+    })
+    RENTAS: Renta[];
 
     @Column({type:'boolean'})
     ESTADO: boolean;

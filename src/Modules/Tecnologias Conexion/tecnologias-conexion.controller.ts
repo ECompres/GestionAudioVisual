@@ -10,7 +10,7 @@ export class TecnologiasConexionController {
         private tecnologiasConexionService: TecnologiasConexionService
     ) { }
 
-    @Get()
+    @Get('get')
     async obtenerTecnologiasConexion() {
         return await this.tecnologiasConexionService.obtenerTecnologiasConexion();
     }

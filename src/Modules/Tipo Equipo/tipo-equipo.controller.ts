@@ -9,7 +9,7 @@ export class TipoEquipoController {
         private tipoEquipoService: TipoEquipoService
     ) { }
 
-    @Get()
+    @Get('get')
     async obtenrTipoEquipos() {
         return await this.tipoEquipoService.obtenerTipoEquipos();
     }
