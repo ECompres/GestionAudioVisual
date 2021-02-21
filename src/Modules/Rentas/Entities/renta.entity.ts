@@ -1,7 +1,7 @@
 import { Empleado } from "src/Modules/Empleados/Entities/empleado.entity";
 import { Equipo } from "src/Modules/Equipo/Entities/equipo.entity";
 import { Usuarios } from "src/Modules/Usuarios/Entities/usuarios.entity";
-import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Renta {
@@ -9,13 +9,14 @@ export class Renta {
     @PrimaryGeneratedColumn()
     ID: number;
 
-    @Column()
+    @Column({unique:true})
     NUMERO_PRESTAMO: number;
 
     @ManyToOne(type => Empleado, empleado => empleado.ID)
     ID_EMPLEADO: Empleado;
 
-    @OneToOne(type => Equipo, { eager: true })
+    @OneToOne(type => Equipo, equipo => equipo.ID, { eager: true })
+    @JoinColumn({name:"ID_EQUIPO"})
     ID_EQUIPO: Equipo;
 
     @ManyToOne(type => Usuarios, usuario => usuario.ID)

@@ -14,5 +14,6 @@ import { Equipo } from './Entities/equipo.entity';
         EquipoController,],
     providers: [
         EquipoService,],
+    exports:[EquipoService]
 })
 export class EquipoModule { }

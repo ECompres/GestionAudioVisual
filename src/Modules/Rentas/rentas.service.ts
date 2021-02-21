@@ -1,6 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { EmpleadosService } from '../Empleados/empleados.service';
+import { EquipoService } from '../Equipo/equipo.service';
 import { RentaDto } from './dto/renta.dto';
 import { Renta } from './Entities/renta.entity';
 
@@ -10,7 +12,8 @@ import { Renta } from './Entities/renta.entity';
 export class RentasService {
 
     constructor(@InjectRepository(Renta)
-    private readonly rentaRepository: Repository<Renta>
+    private readonly rentaRepository: Repository<Renta>,
+        private equipoService: EquipoService
     ) { }
 
     async obtenerRentas(): Promise<Renta[]> {
@@ -22,6 +25,9 @@ export class RentasService {
     }
 
     async crearRenta(renta: RentaDto): Promise<Renta> {
+        let equipo = await this.equipoService.obtenerEquipo(renta.ID_EQUIPO.ID);
+        equipo.ESTADO = false;
+        await this.equipoService.actualizarEquipo(renta.ID_EQUIPO.ID,equipo);
         return await this.rentaRepository.save(renta);
     }
 
