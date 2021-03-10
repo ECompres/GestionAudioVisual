@@ -22,6 +22,14 @@ export class ModeloService {
     async crearModelo(modelo: ModeloDto): Promise<Modelo> {
         return await this.modeloRepository.save(modelo);
     }
+    
+    async obtenerModelosMarca(idMarca: number) : Promise<Modelo[]> {
+        return await this.modeloRepository.find({
+            where:{
+                ID_MARCA:idMarca
+            }
+        })
+    }
 
     async actualizarModelo(id: number, modelo: ModeloDto): Promise<Modelo> {
         const viejoModelo = await this.obtenerModelo(id);

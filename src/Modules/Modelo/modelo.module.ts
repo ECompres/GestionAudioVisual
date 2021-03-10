@@ -14,5 +14,6 @@ import { Modelo } from './Entities/modelo.entity';
         ModeloController,],
     providers: [
         ModeloService,],
+    exports:[ModeloService]
 })
 export class ModeloModule { }
