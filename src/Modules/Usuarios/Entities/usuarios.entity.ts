@@ -1,5 +1,5 @@
 import { TipoUsuarios } from "src/Modules/Tipo Usuarios/Entities/tipo-usuarios.entity";
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Usuarios {
@@ -18,7 +18,7 @@ export class Usuarios {
     @Column({ unique: true })
     MATRICULA: string;
 
-    @OneToOne(type => TipoUsuarios)
+    @ManyToOne(type => TipoUsuarios, tipousuario => tipousuario.ID)
     @JoinColumn({name:"ID_TIPO_USUARIO"})
     ID_TIPO_USUARIO: TipoUsuarios;
 

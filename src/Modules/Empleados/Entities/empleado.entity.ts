@@ -22,9 +22,7 @@ export class Empleado {
     @Column()
     FECHA_INGRESO: Date;
 
-    @OneToMany(type=>Renta, renta => renta.ID_EMPLEADO,{
-        eager:true
-    })
+    @OneToMany(type=>Renta, renta => renta.ID_EMPLEADO)
     RENTAS: Renta[];
 
     @Column({type:'boolean'})

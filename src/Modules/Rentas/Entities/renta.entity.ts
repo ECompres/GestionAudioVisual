@@ -9,17 +9,17 @@ export class Renta {
     @PrimaryGeneratedColumn()
     ID: number;
 
-    @Column({unique:true})
+    @Column({ unique: true })
     NUMERO_PRESTAMO: number;
 
-    @ManyToOne(type => Empleado, empleado => empleado.ID)
+    @ManyToOne(type => Empleado, empleado => empleado.ID, { eager: true })
     ID_EMPLEADO: Empleado;
 
     @OneToOne(type => Equipo, equipo => equipo.ID, { eager: true })
-    @JoinColumn({name:"ID_EQUIPO"})
+    @JoinColumn({ name: "ID_EQUIPO" })
     ID_EQUIPO: Equipo;
 
-    @ManyToOne(type => Usuarios, usuario => usuario.ID)
+    @ManyToOne(type => Usuarios, usuario => usuario.ID, { eager: true })
     ID_USUARIO: Usuarios;
 
     @Column()

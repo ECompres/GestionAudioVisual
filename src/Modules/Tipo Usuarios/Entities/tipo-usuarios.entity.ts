@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Usuarios } from "src/Modules/Usuarios/Entities/usuarios.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class TipoUsuarios {
@@ -10,4 +11,7 @@ export class TipoUsuarios {
 
     @Column()
     ESTADO: Boolean;
+
+    @OneToMany(type=>Usuarios, usuario => usuario.ID_TIPO_USUARIO)
+    USUARIOS: Usuarios[];
 }

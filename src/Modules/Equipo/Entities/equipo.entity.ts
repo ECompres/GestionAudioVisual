@@ -16,22 +16,26 @@ export class Equipo {
     @Column({ unique: true })
     NUMERO_SERIAL: string;
 
-    @ManyToOne(type=>Marca, marca => marca.ID)
+    @Column()
+    @ManyToOne(type => Marca, marca => marca.ID, {eager:true})
     @JoinColumn({ name: "ID_MARCA" })
     ID_MARCA: Marca;
 
+    @Column()
     @ManyToOne(type => Modelo, modelo => modelo.ID, { eager: true })
     @JoinColumn({ name: "ID_MODELO" })
     ID_MODELO: Modelo;
 
+    @Column()
     @ManyToOne(type => TipoEquipo, tipoEquipo => tipoEquipo.ID, { eager: true })
     @JoinColumn({ name: "ID_TIPO_EQUIPO" })
     ID_TIPO_EQUIPO: TipoEquipo;
 
+    @Column()
     @ManyToOne(type => TecnologiaConexion, tecnologiaConexion => tecnologiaConexion.ID, { eager: true })
     @JoinColumn({ name: "ID_TECNOLOGIA_CONEXION" })
     ID_TECNOLOGIA_CONEXION: TecnologiaConexion;
-    
+
     @Column()
     ESTADO: boolean;
 

@@ -28,13 +28,12 @@ export class EmpleadosController {
     }
 
     @Delete(':id')
-    async eliminarEmpleado(@Param('id') id: number){
+    async eliminarEmpleado(@Param('id') id: number) {
         return await this.empleadosService.eliminarEmpleado(id);
     }
 
-
-
-
-
-
+    @Get("try/:ced")
+    async validarCedula(@Param("ced") ced: string) { 
+        return await this.empleadosService.obtenerEmpleadoCedula(ced);
+    }
 }

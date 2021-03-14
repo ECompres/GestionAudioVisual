@@ -13,9 +13,7 @@ export class Marca{
     @Column()
     ESTADO: boolean;
 
-    @OneToMany(type=>Modelo, modelo => modelo.ID_MARCA,{
-        eager:true
-    })
+    @OneToMany(type=>Modelo, modelo => modelo.ID_MARCA)
     MODELOS: Modelo[];
 
     @OneToMany(type=>Equipo, equipo => equipo.ID_MARCA)
