@@ -18,8 +18,8 @@ export class Usuarios {
     @Column({ unique: true })
     MATRICULA: string;
 
-    @ManyToOne(type => TipoUsuarios, tipousuario => tipousuario.ID)
-    @JoinColumn({name:"ID_TIPO_USUARIO"})
+    @ManyToOne(type => TipoUsuarios, tipousuario => tipousuario.ID, { eager: true })
+    @JoinColumn({ name: "ID_TIPO_USUARIO" })
     ID_TIPO_USUARIO: TipoUsuarios;
 
     @Column()
