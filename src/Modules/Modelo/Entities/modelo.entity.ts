@@ -8,7 +8,7 @@ export class Modelo {
     @PrimaryGeneratedColumn()
     ID: number;
 
-    @ManyToOne(type=>Marca, marca => marca.ID)
+    @ManyToOne(type => Marca, marca => marca.ID, { eager: true })
     ID_MARCA: Marca;
 
     @Column()
@@ -17,6 +17,6 @@ export class Modelo {
     @Column()
     ESTADO: boolean;
 
-    @OneToMany(type=>Equipo, equipo => equipo.ID_MODELO)
+    @OneToMany(type => Equipo, equipo => equipo.ID_MODELO)
     EQUIPO: Equipo[];
 }
