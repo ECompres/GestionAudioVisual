@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { EmpleadoDto } from './dto/empleado.dto';
+import { login } from './dto/login.dto';
 import { EmpleadosService } from './empleados.service';
 
 @Controller('Empleados')
@@ -32,8 +33,8 @@ export class EmpleadosController {
         return await this.empleadosService.eliminarEmpleado(id);
     }
 
-    @Get("try/:ced")
-    async validarCedula(@Param("ced") ced: string) { 
-        return await this.empleadosService.obtenerEmpleadoCedula(ced);
+    @Post("login")
+    async login(@Body() login: login) {
+        return await this.empleadosService.login(login);
     }
 }

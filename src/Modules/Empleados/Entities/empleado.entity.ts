@@ -16,16 +16,22 @@ export class Empleado {
     @Column({ unique: true })
     CEDULA: string;
 
+    @Column({ unique : true})
+    EMAIL: string;
+
+    @Column()
+    PASSWORD: string;
+
     @Column()
     TANDA: string;
 
     @Column()
     FECHA_INGRESO: Date;
 
-    @OneToMany(type=>Renta, renta => renta.ID_EMPLEADO)
+    @OneToMany(type => Renta, renta => renta.ID_EMPLEADO)
     RENTAS: Renta[];
 
-    @Column({type:'boolean'})
+    @Column({ type: 'boolean' })
     ESTADO: boolean;
 
 }

@@ -4,6 +4,7 @@ import e from 'express';
 import { Repository } from 'typeorm';
 import { valida_cedula } from '../global/validar-cedula';
 import { EmpleadoDto } from './dto/empleado.dto';
+import { login } from './dto/login.dto';
 import { Empleado } from './Entities/empleado.entity';
 
 
@@ -23,36 +24,58 @@ export class EmpleadosService {
 
     async crearEmpleado(empleado: EmpleadoDto): Promise<any> {
         const empleadoCed = await this.obtenerEmpleadoCedula(empleado.CEDULA);
-        if(!empleadoCed){
-            if(valida_cedula(empleado.CEDULA)){
-                return await this.empleadoRepository.save(empleado);
-            }else{
+        const empleadoEmail = await this.obtenerEmpleadoCorreo(empleado.EMAIL);
+        if (!empleadoCed) {
+            if (valida_cedula(empleado.CEDULA)) {
+                if (empleadoEmail) {
+                    return "Email ya registrado";
+                } else {
+                    return await this.empleadoRepository.save(empleado);
+                }
+            } else {
                 return "La cédula es invalida";
-            }    
-        }else{
+            }
+        } else {
             return "Cédula ya registrada";
         }
     }
 
-    async obtenerEmpleadoCedula(ced): Promise<any>{
+    async obtenerEmpleadoCedula(ced): Promise<any> {
         return await this.empleadoRepository.findOne({
-            where:{
+            where: {
                 CEDULA: ced
             }
         })
     };
 
+    async obtenerEmpleadoCorreo(email): Promise<any> {
+        return await this.empleadoRepository.findOne({
+            where: {
+                EMAIL: email
+            }
+        });
+    }
+
     async actualizarEmpleado(id: number, empleado: EmpleadoDto): Promise<any> {
-        if(valida_cedula(empleado.CEDULA)){
+        if (valida_cedula(empleado.CEDULA)) {
             const viejoEmpleado = await this.obtenerEmpleado(id);
             const nuevoEmpleado = Object.assign(viejoEmpleado, empleado)
             return await this.empleadoRepository.save(nuevoEmpleado);
-        }else{
+        } else {
             return "La cédula es invalida";
         }
     }
 
     async eliminarEmpleado(id: number): Promise<any> {
         return await this.empleadoRepository.delete(id);
+    }
+
+    async login(login: login): Promise<Empleado> {
+        return await this.empleadoRepository.findOne({
+            where: {
+                EMAIL: login.EMAIL,
+                PASSWORD: login.PASSWORD
+            }
+        })
     }
 }
