@@ -18,18 +18,30 @@ export class UsuariosService {
         return await this.usuariosRepository.findOne(id);
     }
     async crearUsuario(usuario: UsuarioDto): Promise<any> {
-        if (valida_cedula(usuario.CEDULA)) {
-            return await this.usuariosRepository.save(usuario);
-        } else {
-            return "Ingrese una cédula válida";
+        const userCed = await this.obtenerUsuarioCedula(usuario.CEDULA);
+        if (!userCed) {
+            if (valida_cedula(usuario.CEDULA)) {
+                return await this.usuariosRepository.save(usuario);
+            } else {
+                return "Ingrese una cédula válida";
+            }
+        }else{
+            return "Cédula ya registrada";
         }
     }
+    async obtenerUsuarioCedula(ced): Promise<any> {
+        return await this.usuariosRepository.findOne({
+            where: {
+                CEDULA: ced
+            }
+        })
+    };
     async actualizarUsuario(id: number, usuario: UsuarioDto): Promise<any> {
         if (valida_cedula(usuario.CEDULA)) {
             const viejoUsuario = await this.obtenerUsuario(id);
             const nuevoUsuario = Object.assign(viejoUsuario, usuario);
             return await this.usuariosRepository.save(nuevoUsuario);
-        }else{
+        } else {
             return "Ingrese una cédula válida";
         }
     }
