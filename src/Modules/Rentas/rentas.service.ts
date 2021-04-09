@@ -38,6 +38,10 @@ export class RentasService {
     }
 
     async eliminarRenta(id: number): Promise<any> {
+        const renta = await this.obtenerRenta(id);
+        let equipo = await this.equipoService.obtenerEquipo(renta.ID_EQUIPO.ID);
+        equipo.ESTADO = true;
+        await this.equipoService.actualizarEquipo(renta.ID_EQUIPO.ID,equipo);
         return await this.rentaRepository.delete(id);
     }
 
