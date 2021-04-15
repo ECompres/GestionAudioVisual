@@ -25,9 +25,10 @@ export class RentasService {
     }
 
     async crearRenta(renta: RentaDto): Promise<Renta> {
-        let equipo = await this.equipoService.obtenerEquipo(renta.ID_EQUIPO.ID);
+        let idNumber = parseInt(renta.ID_EQUIPO.toString());
+        let equipo = await this.equipoService.obtenerEquipo(idNumber);
         equipo.ESTADO = false;
-        await this.equipoService.actualizarEquipo(renta.ID_EQUIPO.ID,equipo);
+        await this.equipoService.actualizarEquipo(idNumber,equipo);
         return await this.rentaRepository.save(renta);
     }
 
@@ -39,6 +40,7 @@ export class RentasService {
 
     async eliminarRenta(id: number): Promise<any> {
         const renta = await this.obtenerRenta(id);
+        let idNumber = parseInt(renta.ID_EQUIPO.ID.toString());
         let equipo = await this.equipoService.obtenerEquipo(renta.ID_EQUIPO.ID);
         equipo.ESTADO = true;
         await this.equipoService.actualizarEquipo(renta.ID_EQUIPO.ID,equipo);
